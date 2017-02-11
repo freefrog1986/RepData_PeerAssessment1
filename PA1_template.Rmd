@@ -1,9 +1,9 @@
 ---
 title: 'Reproducible Research: Peer Assessment 1'
 output:
-  html_document:
-    keep_md: yes
-  word_document: default
+html_document:
+keep_md: yes
+word_document: default
 ---
 
 ## Loading and preprocessing the data
@@ -94,3 +94,34 @@ The mean of total number of steps taken per day is `r mean_step1`
 The mean and median values are differ from the estimates from the first part of the report. Imputing missing data make both the value bigger.
 
 ## Are there differences in activity patterns between weekdays and weekends?
+Create a array to indicate whether a given date is weekday or weekend.
+```{r}
+theday<-weekdays(as.Date(ori_data[,2]))
+for(i in 1:length(theday)){
+        if(theday[i]=="Sunday"|theday[i]=="Saturday"){
+                theday[i]<-'weekend'
+        }
+        else{
+                theday[i]<-'weekday'
+        }
+}
+```
+Create a dataframe with a column named 'theday' with the factor type of two levels weekday and weekend.
+```{r}
+data2<-data.frame(ori_data)
+data2$theday<-factor(theday)
+```
+Group steps data by the interval and theday value.
+```{r}
+aggdata<-aggregate(steps~theday+interval,
+                   data2,
+                   mean,
+                   na.rm=TRUE)
+```
+Make a panel plot to show the difference of total steps between the weekday and the weekend.
+```{r, fig.width=10, fig.height = 4}
+library('lattice')
+with(aggdata,xyplot(steps~interval|theday,type = 'l', layout = c(1,2)))
+```
+
+@Writen by FreeFrog 
