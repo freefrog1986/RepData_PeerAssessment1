@@ -5,8 +5,10 @@ html_document:
 keep_md: yes
 word_document: default
 ---
+This report is about the personal activity data analysis by finding the patterns. The raw data is recording by monitoring devices such as Fitbit, Nike Fuelband, or Jawbone Up. This report not only includes several figures to indicate the key result but also contain the processing code that makes this research reproducible.
 
 ## Loading and preprocessing the data
+Unzip the file and glance at the data.
 ```{r echo=TRUE}
 unzip('activity.zip')
 ori_data<- read.csv(file = 'activity.csv')
