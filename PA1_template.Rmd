@@ -17,7 +17,7 @@ head(ori_data)
 
 ## What is mean total number of steps taken per day?
 Calculate the total number of steps taken per day and visualize the data by generating a histogram. 
-```{r, fig.width=10, fig.height = 4}
+```{r Plot1, fig.width=10, fig.height = 4}
 step_per_day<-with(ori_data,tapply(steps,date,sum,na.rm=TRUE))
 par(mar=c(4,4,4,4))
 hist(step_per_day,
