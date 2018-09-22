@@ -60,7 +60,7 @@ Across all the days in the dataset `r max_step_time` interval contains the maxim
 ```{r}
 total_na<-sum(is.na(ori_data[,1]))
 ```
-There are 'r total_na' NAs in the dataset
+There are `r total_na` NAs in the dataset
 
 #### Create a new dataset without missing data.
 ```{r}
